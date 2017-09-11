@@ -1,0 +1,41 @@
+{
+  "name": "rpi-prototype",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node build/server.js",
+    "dev": "NODE_ENV=development PORT=8001 TZ='America/Chicago' nodemon build/server.js",
+    "test": "PORT=8001 TZ='America/Chicago' NODE_ENV=test mocha build/test -t 10000",
+    "build": "babel -d build src",
+    "watch": "babel --watch -d build src | ts '[%Y-%m-%d %H:%M:%S]'",
+    "webpack": "NODE_ENV=development webpack --progress --watch"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-preset-es2015-node6": "^0.4.0",
+    "babel-preset-latest": "^6.22.0"
+  },
+  "standard": {
+    "globals": [
+      "it",
+      "describe",
+      "beforeEach",
+      "afterEach",
+      "before",
+      "after",
+      "Backbone",
+      "_",
+      "$"
+    ]
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.0",
+    "express": "^4.15.4",
+    "gpio-lib": "^0.0.2",
+    "pify": "^3.0.0"
+  }
+}

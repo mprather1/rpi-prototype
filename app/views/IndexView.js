@@ -5,23 +5,24 @@ const indexView = Backbone.Marionette.View.extend({
     'click button': 'handleClick'
   },
   handleClick: function (e) {
-    let value = []
+    let value = $(e.currentTarget).data('value')
+    let pin = $(e.currentTarget).data('pin')
 
     if ($(e.currentTarget).data('value') === 'off') {
-      value.push('on', 'red')
+      value = ('on')
       $(e.currentTarget).addClass('btn-primary').removeClass('btn-inactive')
     } else {
-      value.push('off', 'white')
+      value = ('off')
       $(e.currentTarget).addClass('btn-inactive').removeClass('btn-primary')
     }
 
-    $(e.currentTarget).data('value', value[0])
-    $(e.currentTarget).html(value[0])
+    $(e.currentTarget).data('value', value)
+    $(e.currentTarget).html(value)
 
     $.ajax({
       data: '',
       type: 'POST',
-      url: 'http://192.168.0.101:8001/pin/23/' + value[0],
+      url: 'http://192.168.0.101:8001/pin/' + pin + '/' + value,
       error: (err) => {
         console.log(err)
       }
